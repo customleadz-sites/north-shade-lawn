@@ -577,9 +577,13 @@ ul.ticks svg { width: 1.15em; height: 1.15em; color: var(--leaf-500); margin-top
   .trust__grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 860px) {
-  .nav, .nav__phone { display: none; }
-  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 50%; color: var(--forest-900); }
-  .nav-toggle svg { width: 26px; }
+  .nav { display: none; }
+  .site-header__inner { padding-block: 0.4rem; }
+  .brand img { height: 50px; }
+  .header-right { gap: 0.55rem; }
+  .nav__phone { display: inline-flex; font-size: 0.9rem; }
+  .nav-toggle { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; color: var(--forest-900); }
+  .nav-toggle svg { width: 24px; }
   .split, .contact-grid, .svc-row, .why__grid { grid-template-columns: 1fr; }
   .svc-row:nth-child(even) .svc-row__media { order: 0; }
   .services__grid { grid-template-columns: 1fr 1fr; }
@@ -595,8 +599,12 @@ ul.ticks svg { width: 1.15em; height: 1.15em; color: var(--leaf-500); margin-top
   .mobile-menu.open { opacity: 1; pointer-events: auto; }
   .mobile-menu a { color: var(--cream); font-family: var(--display); font-size: 1.7rem; line-height: 1.1; }
   .mobile-menu a:hover { color: var(--leaf-400); }
-  .mobile-menu .mm-label { color: rgba(246,243,234,0.45); font-family: var(--body); font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; margin-top: 0.5rem; }
-  .mobile-menu .mm-sub { font-size: 1.2rem; color: rgba(246,243,234,0.82); }
+  .mm-toggle { background: none; border: 0; cursor: pointer; color: var(--cream); font-family: var(--display); font-size: 1.7rem; line-height: 1.1; display: inline-flex; align-items: center; gap: 0.4rem; padding: 0; }
+  .mm-toggle .chev { width: 0.55em; height: 0.55em; transition: transform 0.3s var(--ease); }
+  .mm-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
+  .mm-dropdown { display: none; flex-direction: column; align-items: center; gap: 0.55rem; margin-top: 0.1rem; }
+  .mm-dropdown.open { display: flex; }
+  .mm-dropdown a { font-size: 1.15rem; color: rgba(246,243,234,0.82); }
   .mobile-menu .btn { font-family: var(--body); font-size: 1rem; margin-top: 1.2rem; }
   .mobile-menu__close { position: absolute; top: 1.5rem; right: 1.5rem; color: var(--cream); width: 46px; height: 46px; }
   .mobile-menu__close svg { width: 28px; }

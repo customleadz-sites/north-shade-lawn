@@ -27,6 +27,15 @@
   if (menu) menu.querySelectorAll("a").forEach(function (a) {
     a.addEventListener("click", function () { setMenu(false); });
   });
+  /* Services accordion inside mobile menu */
+  var mmToggle = document.querySelector(".mm-toggle");
+  var mmDrop = document.getElementById("mm-services");
+  if (mmToggle && mmDrop) {
+    mmToggle.addEventListener("click", function () {
+      var open = mmDrop.classList.toggle("open");
+      mmToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  }
 
   /* ---- Scroll reveal ---- */
   var reveals = document.querySelectorAll(".reveal");

@@ -45,12 +45,13 @@
 <div class="mobile-menu" aria-hidden="true">
   <button class="mobile-menu__close" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
   <a href="index.html">Home</a>
-  <a href="services.html">Services</a>
-  <span class="mm-label">Main services</span>
-  <a href="service-landscaping.html" class="mm-sub">Landscaping &amp; Design</a>
-  <a href="service-hardscaping.html" class="mm-sub">Hardscaping</a>
-  <a href="service-lawn-care.html" class="mm-sub">Lawn Care</a>
-  <span class="mm-label">More</span>
+  <button class="mm-toggle" aria-expanded="false" aria-controls="mm-services">Services <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m6 9 6 6 6-6"/></svg></button>
+  <div class="mm-dropdown" id="mm-services">
+    <a href="service-landscaping.html">Landscaping &amp; Design</a>
+    <a href="service-hardscaping.html">Hardscaping</a>
+    <a href="service-lawn-care.html">Lawn Care</a>
+    <a href="services.html">All Services</a>
+  </div>
   <a href="portfolio.html">Portfolio</a>
   <a href="about.html">About</a>
   <a href="blog.html">Blog</a>
