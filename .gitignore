@@ -2,3 +2,4 @@
 node_modules/
 __preview.html
 .vercel
+__*.html
