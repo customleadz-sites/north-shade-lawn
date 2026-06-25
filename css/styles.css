@@ -40,7 +40,7 @@
 
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overscroll-behavior: none; background: var(--cream); }
 body {
   font-family: var(--body);
   background: var(--cream);
@@ -419,7 +419,7 @@ em.serif-i { font-style: italic; font-family: var(--display); color: var(--fores
 .footer__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 2.5rem; }
 .footer__brand img { height: 120px; opacity: 0.97; }
 .footer__brand p { margin-top: 1.2rem; font-size: 0.95rem; max-width: 32ch; }
-.footer h4 { color: var(--cream); font-family: var(--body); font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 1.2rem; }
+.site-footer h4 { color: var(--cream); font-family: var(--body); font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 1.2rem; }
 .footer ul li { margin-bottom: 0.7rem; }
 .footer a { font-size: 0.95rem; transition: color 0.3s var(--ease); }
 .footer a:hover { color: var(--leaf-400); }
@@ -578,10 +578,10 @@ ul.ticks svg { width: 1.15em; height: 1.15em; color: var(--leaf-500); margin-top
 }
 @media (max-width: 860px) {
   .nav { display: none; }
-  .site-header__inner { padding-block: 0.4rem; }
+  .site-header__inner { display: flex; align-items: center; justify-content: space-between; padding-block: 0.4rem; position: relative; }
   .brand img { height: 50px; }
   .header-right { gap: 0.55rem; }
-  .nav__phone { display: inline-flex; font-size: 0.9rem; }
+  .nav__phone { display: inline-flex; font-size: 0.92rem; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); white-space: nowrap; }
   .nav-toggle { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; color: var(--forest-900); }
   .nav-toggle svg { width: 24px; }
   .split, .contact-grid, .svc-row, .why__grid { grid-template-columns: 1fr; }
@@ -613,6 +613,16 @@ ul.ticks svg { width: 1.15em; height: 1.15em; color: var(--leaf-500); margin-top
   .services__grid, .guarantee-strip { grid-template-columns: 1fr; }
   .trust__grid { grid-template-columns: 1fr 1fr; }
   .gallery { columns: 1; }
-  .intro__badge { left: 0; bottom: -20px; }
   .hero__meta { gap: 0.9rem 1.2rem; }
+
+  /* Smaller 1-Yr badge, tucked lower-left so it covers less of the photo */
+  .intro__badge { left: -12px; bottom: -26px; padding: 0.8rem 1rem; max-width: 175px; }
+  .intro__badge .big { font-size: 1.7rem; }
+  .intro__badge .small { font-size: 0.72rem; line-height: 1.35; }
+
+  /* Footer: single clean column */
+  .footer__grid { grid-template-columns: 1fr; gap: 2.2rem; }
+  .footer__brand img { height: 92px; }
+  .footer__brand p { max-width: none; }
+  .footer__bottom { flex-direction: column; align-items: flex-start; gap: 0.55rem; text-align: left; }
 }
