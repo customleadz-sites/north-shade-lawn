@@ -620,6 +620,9 @@ ul.ticks svg { width: 1.15em; height: 1.15em; color: var(--leaf-500); margin-top
   .intro__badge .big { font-size: 1.7rem; }
   .intro__badge .small { font-size: 0.72rem; line-height: 1.35; }
 
+  /* "What's included" tick lists: single column so items don't cramp */
+  .ticks { grid-template-columns: 1fr !important; gap: 0.85rem 0 !important; }
+
   /* Footer: single clean column */
   .footer__grid { grid-template-columns: 1fr; gap: 2.2rem; }
   .footer__brand img { height: 92px; }
