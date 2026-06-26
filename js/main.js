@@ -50,20 +50,40 @@
     reveals.forEach(function (el) { el.classList.add("in"); });
   }
 
-  /* ---- Portfolio filter ---- */
+  /* ---- Portfolio filter + load more ---- */
   var filterBtns = document.querySelectorAll(".filter button");
-  var figures = document.querySelectorAll(".gallery figure");
-  filterBtns.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var cat = btn.getAttribute("data-filter");
-      filterBtns.forEach(function (b) { b.classList.remove("is-active"); });
-      btn.classList.add("is-active");
-      figures.forEach(function (fig) {
-        var show = cat === "all" || fig.getAttribute("data-cat") === cat;
-        fig.classList.toggle("is-hidden", !show);
+  var figures = Array.prototype.slice.call(document.querySelectorAll(".gallery figure"));
+  var moreWrap = document.querySelector(".gallery-more");
+  var moreBtn = document.querySelector("[data-load-more]");
+  var STEP = 10;          // how many to show per "page"
+  var currentCat = "all";
+  var shown = STEP;
+
+  function renderGallery() {
+    var matches = figures.filter(function (fig) {
+      return currentCat === "all" || fig.getAttribute("data-cat") === currentCat;
+    });
+    figures.forEach(function (fig) { fig.classList.add("is-hidden"); });
+    matches.slice(0, shown).forEach(function (fig) { fig.classList.remove("is-hidden"); });
+    if (moreWrap) moreWrap.hidden = matches.length <= shown;
+  }
+
+  if (figures.length) {
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        currentCat = btn.getAttribute("data-filter");
+        filterBtns.forEach(function (b) { b.classList.remove("is-active"); });
+        btn.classList.add("is-active");
+        shown = STEP;          // reset to first 10 when switching category
+        renderGallery();
       });
     });
-  });
+    if (moreBtn) moreBtn.addEventListener("click", function () {
+      shown += STEP;
+      renderGallery();
+    });
+    renderGallery();
+  }
 
   /* ---- Contact form (no-backend friendly) ----
      Works out of the box as a friendly "thank you" demo.
