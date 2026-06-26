@@ -634,6 +634,9 @@ ul.ticks svg { width: 1.15em; height: 1.15em; color: var(--leaf-500); margin-top
   /* Smaller hero headline on phones so it doesn't run 4 huge lines deep */
   .hero h1 { font-size: 1.6rem !important; line-height: 1.1 !important; }
 
+  /* Trim the hero description on phones: drop everything after the dash */
+  .hide-mobile { display: none; }
+
   /* Smaller 1-Yr badge, tucked lower-left so it covers less of the photo */
   .intro__badge { left: -12px; bottom: -26px; padding: 0.8rem 1rem; max-width: 175px; }
   .intro__badge .big { font-size: 1.7rem; }
