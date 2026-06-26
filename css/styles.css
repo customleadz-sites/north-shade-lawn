@@ -235,7 +235,8 @@ em.serif-i { font-style: italic; font-family: var(--display); color: var(--fores
 .hero__inner { padding-block: clamp(3rem, 8vh, 7rem); width: 100%; max-width: 1080px; padding-left: clamp(0.5rem, 5vw, 5rem); }
 .hero__inner > * { max-width: 640px; }
 .hero__eyebrow { color: var(--leaf-400); }
-.hero__eyebrow::before { background: var(--leaf-400); }
+/* No leading dash on the hero eyebrow */
+.hero__eyebrow::before { display: none; }
 .hero h1 { color: var(--cream); max-width: 16ch; margin-top: 1.1rem; }
 .hero h1 .accent { color: var(--leaf-400); font-style: italic; }
 .hero__sub { max-width: 46ch; margin-top: 1.5rem; color: rgba(246,243,234,0.86); font-size: clamp(1.05rem, 1rem + 0.4vw, 1.3rem); font-weight: 360; }
