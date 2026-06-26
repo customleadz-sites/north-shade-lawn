@@ -83,6 +83,54 @@
       renderGallery();
     });
     renderGallery();
+
+    /* ---- Lightbox (click a photo to open full size) ---- */
+    var lb = document.getElementById("lightbox");
+    if (lb) {
+      var lbImg = lb.querySelector(".lightbox__img");
+      var curIndex = 0;
+
+      function visibleFigures() {
+        return figures.filter(function (f) { return !f.classList.contains("is-hidden"); });
+      }
+      function showAt(list, i) {
+        if (!list.length) return;
+        curIndex = (i + list.length) % list.length;
+        var img = list[curIndex].querySelector("img");
+        lbImg.setAttribute("src", img.getAttribute("src"));
+        lbImg.setAttribute("alt", img.getAttribute("alt") || "");
+      }
+      function openLb(fig) {
+        var list = visibleFigures();
+        var i = list.indexOf(fig);
+        showAt(list, i < 0 ? 0 : i);
+        lb.classList.add("open");
+        lb.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+      function closeLb() {
+        lb.classList.remove("open");
+        lb.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+      figures.forEach(function (fig) {
+        fig.addEventListener("click", function () { openLb(fig); });
+      });
+      lb.querySelector(".lightbox__close").addEventListener("click", closeLb);
+      lb.querySelector(".lightbox__prev").addEventListener("click", function (e) {
+        e.stopPropagation(); showAt(visibleFigures(), curIndex - 1);
+      });
+      lb.querySelector(".lightbox__next").addEventListener("click", function (e) {
+        e.stopPropagation(); showAt(visibleFigures(), curIndex + 1);
+      });
+      lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
+      document.addEventListener("keydown", function (e) {
+        if (!lb.classList.contains("open")) return;
+        if (e.key === "Escape") closeLb();
+        else if (e.key === "ArrowLeft") showAt(visibleFigures(), curIndex - 1);
+        else if (e.key === "ArrowRight") showAt(visibleFigures(), curIndex + 1);
+      });
+    }
   }
 
   /* ---- Contact form (no-backend friendly) ----
