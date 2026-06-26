@@ -581,6 +581,18 @@ ul.ticks svg { width: 1.15em; height: 1.15em; color: var(--leaf-500); margin-top
   /* Sticky (in-flow) header on mobile: the hero starts BELOW it, so nothing
      bleeds through the translucent iOS Safari bar above the header. */
   .site-header { position: sticky; }
+  /* Always-white cap: a panel that extends upward from the header and scrolls
+     pinned with it, so the page content can never show through the strip above
+     the header (iOS safe-area / address-bar zone) while scrolling. */
+  .site-header::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 100%;
+    height: 100vh;
+    background: var(--paper);
+    z-index: -1;
+  }
   .page-hero { padding-top: clamp(2.4rem, 6vw, 3.6rem); }
   .site-header__inner { display: flex; align-items: center; justify-content: space-between; padding-block: 0.4rem; position: relative; }
   .brand img { height: 50px; }
