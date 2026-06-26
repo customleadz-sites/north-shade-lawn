@@ -49,7 +49,7 @@ body {
   font-size: clamp(1rem, 0.96rem + 0.2vw, 1.075rem);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
@@ -140,14 +140,6 @@ em.serif-i { font-style: italic; font-family: var(--display); color: var(--fores
 .site-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   background: var(--paper);
-}
-/* Solid panel filling the space ABOVE the header so nothing (hero, overscroll,
-   translucent iOS toolbar) shows through above it. */
-.site-header::before {
-  content: ""; position: absolute; left: 0; right: 0; bottom: 100%;
-  height: 50vh; background: var(--paper); pointer-events: none;
-}
-.site-header {
   border-bottom: 1px solid var(--line);
   box-shadow: 0 10px 30px -26px rgba(15,46,26,0.5);
   transition: box-shadow 0.4s var(--ease);
@@ -586,6 +578,10 @@ ul.ticks svg { width: 1.15em; height: 1.15em; color: var(--leaf-500); margin-top
 }
 @media (max-width: 860px) {
   .nav { display: none; }
+  /* Sticky (in-flow) header on mobile: the hero starts BELOW it, so nothing
+     bleeds through the translucent iOS Safari bar above the header. */
+  .site-header { position: sticky; }
+  .page-hero { padding-top: clamp(2.4rem, 6vw, 3.6rem); }
   .site-header__inner { display: flex; align-items: center; justify-content: space-between; padding-block: 0.4rem; position: relative; }
   .brand img { height: 50px; }
   .header-right { gap: 0.55rem; }
