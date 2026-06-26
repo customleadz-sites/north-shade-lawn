@@ -69,6 +69,23 @@
   }
 
   if (figures.length) {
+    /* Arrange "All work": the 10 featured photos first (in client's order),
+       then every other photo shuffled into a random mix — no repeats, none lost. */
+    var gallery = document.querySelector(".gallery");
+    if (gallery) {
+      var featured = figures.filter(function (f) { return f.hasAttribute("data-featured"); })
+        .sort(function (a, b) {
+          return (+a.getAttribute("data-featured")) - (+b.getAttribute("data-featured"));
+        });
+      var rest = figures.filter(function (f) { return !f.hasAttribute("data-featured"); });
+      for (var i = rest.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = rest[i]; rest[i] = rest[j]; rest[j] = tmp;
+      }
+      figures = featured.concat(rest);
+      figures.forEach(function (f) { gallery.appendChild(f); });
+    }
+
     filterBtns.forEach(function (btn) {
       btn.addEventListener("click", function () {
         currentCat = btn.getAttribute("data-filter");
