@@ -114,10 +114,12 @@
 
     <!-- Form -->
     <div class="reveal" data-d="1">
-      <!-- TO SEND REAL EMAILS: replace action="" with your Formspree URL,
-           e.g. action="https://formspree.io/f/yourID" method="POST"
-           (see README.md). It works as a friendly demo until then. -->
-      <form class="form" data-quote-form action="" method="POST">
+      <!-- Quote requests are sent via Web3Forms to northshadelawn23@gmail.com.
+           The access key below identifies this form (see README.md). -->
+      <form class="form" data-quote-form action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="166cc735-3d4c-4542-aa0d-ac42a1e485db" />
+        <input type="hidden" name="subject" value="New quote request — North Shade Lawn" />
+        <input type="hidden" name="from_name" value="North Shade Lawn website" />
         <h3 style="font-size:1.5rem;margin-bottom:0.4rem;">Request a free quote</h3>
         <p style="color:var(--ink-70);margin-bottom:1.6rem;font-size:0.95rem;">Tell us a little about your project — we'll follow up quickly.</p>
 
@@ -131,7 +133,10 @@
         </div>
         <div class="field">
           <label for="phone">Phone</label>
-          <input type="tel" id="phone" name="phone" autocomplete="tel" required placeholder="(989) 000-0000" />
+          <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" required
+                 placeholder="(989) 000-0000"
+                 pattern="(\+?1[\s.\-]?)?\(?\d{3}\)?[\s.\-]?\d{3}[\s.\-]?\d{4}"
+                 title="Please enter a valid 10-digit US phone number, e.g. (989) 763-3899" />
         </div>
         <div class="field">
           <label for="city">Property city</label>
@@ -141,8 +146,8 @@
           <label for="message">What are you looking for?</label>
           <textarea id="message" name="message" required placeholder="A quick summary — e.g. new paver patio, weekly mowing, fall cleanup…"></textarea>
         </div>
-        <!-- honeypot anti-spam -->
-        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
+        <!-- honeypot anti-spam (Web3Forms reads "botcheck"; bots tick it, humans never see it) -->
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none;" aria-hidden="true" />
 
         <button type="submit" class="btn btn--primary">Send my request
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>

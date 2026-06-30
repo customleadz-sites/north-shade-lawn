@@ -150,22 +150,65 @@
     }
   }
 
-  /* ---- Contact form (no-backend friendly) ----
-     Works out of the box as a friendly "thank you" demo.
-     To send real emails, set the <form> action to a Formspree
-     endpoint (https://formspree.io) — instructions in README. */
+  /* ---- Contact form (Web3Forms via AJAX) ----
+     Submits in the background to Web3Forms so the visitor stays on the
+     page and sees the on-page "Thanks — we got it!" card. The access key
+     and recipient are configured in contact.html. */
   var form = document.querySelector("form[data-quote-form]");
   if (form) {
     form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Native HTML5 validation (incl. US phone pattern) before sending.
+      if (typeof form.reportValidity === "function" && !form.reportValidity()) {
+        return;
+      }
+
       var action = form.getAttribute("action") || "";
-      var isLive = action.indexOf("formspree.io") !== -1 || form.hasAttribute("data-live");
-      if (!isLive) {
-        e.preventDefault();
+      var submitBtn = form.querySelector("button[type=submit]");
+      var showSuccess = function () {
         form.classList.add("sent");
         var ok = form.querySelector(".form__success");
         if (ok) ok.classList.add("show");
         form.scrollIntoView({ behavior: "smooth", block: "center" });
+      };
+
+      // No live endpoint configured → fall back to friendly demo message.
+      if (action.indexOf("api.web3forms.com") === -1) {
+        showSuccess();
+        return;
       }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.dataset.label = submitBtn.textContent;
+        submitBtn.textContent = "Sending…";
+      }
+
+      fetch(action, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form)
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (data && data.success) {
+            showSuccess();
+          } else {
+            alert("Sorry — something went wrong sending your request. Please call or text (989) 763-3899 and we'll take care of you.");
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = submitBtn.dataset.label || "Send my request";
+            }
+          }
+        })
+        .catch(function () {
+          alert("Sorry — something went wrong sending your request. Please call or text (989) 763-3899 and we'll take care of you.");
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = submitBtn.dataset.label || "Send my request";
+          }
+        });
     });
   }
 

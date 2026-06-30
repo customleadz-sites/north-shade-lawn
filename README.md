@@ -19,20 +19,26 @@ This site is zero-config. From the `site/` folder:
 2. Import it in Vercel — no framework, no build command needed.
 3. Add the domain **northshadelawnllc.com** in Vercel → Settings → Domains.
 
-## Make the contact form send real emails (5-minute setup)
-Right now the quote form shows a friendly "Thanks — we got it!" message but does **not** email anyone yet. To turn on real emails for free:
+## Contact form (live — sends real emails via Web3Forms)
+The quote form on `contact.html` is **live**. When someone submits it, the
+details email straight to **northshadelawn23@gmail.com**, and the visitor sees
+an on-page "Thanks — we got it!" message (no redirect).
 
-1. Go to **https://formspree.io**, sign up, and create a new form using the email `northshadelawn23@gmail.com`.
-2. Formspree gives you a URL like `https://formspree.io/f/abcdwxyz`.
-3. Open `contact.html`, find this line near the form:
-   ```html
-   <form class="form" data-quote-form action="" method="POST">
-   ```
-   and change it to:
-   ```html
-   <form class="form" data-quote-form action="https://formspree.io/f/abcdwxyz" method="POST">
-   ```
-4. Done — form submissions now land in the Gmail inbox. (The form already collects name, email, phone, address, and a project summary, and has built-in spam protection.)
+- **How it sends:** It posts in the background to **Web3Forms** using the
+  account's **Access Key**, stored in `contact.html` as a hidden field:
+  ```html
+  <input type="hidden" name="access_key" value="166cc735-3d4c-4542-aa0d-ac42a1e485db" />
+  ```
+- **Change the recipient email:** Log into https://web3forms.com with the
+  account tied to that key and update the email there — no code change needed.
+- **Spam protection (three layers, no monthly cost):**
+  1. **Honeypot** — a hidden `botcheck` field that real people never see; bots
+     fill it and get rejected automatically.
+  2. **US phone validation** — the phone field only accepts a valid 10-digit US
+     number, which blocks most overseas junk before it can submit.
+  3. **Web3Forms' built-in spam filtering** on their servers.
+- If spam ever slips through, the next step is adding a free **hCaptcha**
+  ("click to confirm you're human") box — ask and we'll switch it on.
 
 ## Photos
 - Original photos live in `../assets/North Shade Photos/` (sorted by service).
