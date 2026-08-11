@@ -40,6 +40,11 @@ an on-page "Thanks — we got it!" message (no redirect).
 - If spam ever slips through, the next step is adding a free **hCaptcha**
   ("click to confirm you're human") box — ask and we'll switch it on.
 
+## Google Analytics (live)
+Every page has the GA4 tag in its `<head>`. Property: **North Shade Lawn Website**
+(under the Custom Leadz GA account), measurement ID **G-SCGX7VS7M3**, stream URL
+https://northshadelawnllc.com. Don't reuse this ID on any other site.
+
 ## Photos
 - Original photos live in `../assets/North Shade Photos/` (sorted by service).
 - Web-ready versions are in `images/work/` (converted from iPhone HEIC to JPG, resized for fast loading).
