@@ -9,6 +9,26 @@ A fast, static marketing site (plain HTML/CSS/JS — no build step). Premium "ed
 - `about.html` — Story, owners (Dayne & William), values, guarantees
 - `blog.html` — "Journal" index, plus 3 starter posts (`journal-*.html`)
 - `contact.html` — Quote-request form + contact details + map
+- `privacy.html` — Privacy Policy (what the site collects and why)
+- `sitemap.html` — Human-readable index of every page (linked in the footer)
+
+## Footer legal links
+Every page's footer bottom bar has **Privacy Policy** and **Sitemap** links
+(`.footer__legal` in `css/styles.css`). The contact form also carries a one-line
+consent note pointing at the Privacy Policy.
+
+**Two different sitemaps — don't mix them up:**
+- `sitemap.html` → lives at `/sitemap` — the page people click.
+- `sitemap.xml` → lives at `/sitemap.xml` — the file Google reads (listed in `robots.txt`).
+
+If you add a new page, add it to **both**.
+
+## Privacy Policy
+`privacy.html` describes what's actually collected today: the contact-form fields
+(name, email, phone, city, message) via Web3Forms, plus Google Analytics, Google
+Maps, and Vercel logs. **If you add any new tracking (Meta Pixel, call tracking,
+a chat widget, Google Ads conversion tags), update the "Who else touches your
+information" section and the "Last updated" date.**
 
 ## Preview it locally
 Just double-click `index.html` to open it in your browser. Everything works offline except the Google Map embeds (which need internet).

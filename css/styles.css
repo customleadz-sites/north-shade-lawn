@@ -432,6 +432,9 @@ em.serif-i { font-style: italic; font-family: var(--display); color: var(--fores
 .footer__social svg { width: 18px; color: var(--cream); }
 .footer__social a:hover svg { color: var(--forest-900); }
 .footer__bottom { margin-top: 3.5rem; padding-top: 1.6rem; border-top: 1px solid rgba(246,243,234,0.14); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; font-size: 0.84rem; color: rgba(246,243,234,0.55); }
+.footer__legal { display: flex; flex-wrap: wrap; gap: 1.4rem; }
+.footer__legal a { color: rgba(246,243,234,0.55); transition: color 0.3s var(--ease); }
+.footer__legal a:hover { color: var(--leaf-400); }
 
 /* ============================================================
    PAGE HERO (interior pages)
@@ -667,3 +670,15 @@ ul.ticks svg { width: 1.15em; height: 1.15em; color: var(--leaf-500); margin-top
   .footer__brand p { max-width: none; }
   .footer__bottom { flex-direction: column; align-items: flex-start; gap: 0.55rem; text-align: left; }
 }
+
+/* ============================================================
+   SITEMAP PAGE
+   ============================================================ */
+.sitemap-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem 2rem; }
+.sitemap-col h2 { font-size: 1.25rem; margin-bottom: 1.1rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--line); }
+.sitemap-col ul { display: grid; gap: 0.7rem; }
+.sitemap-col li { list-style: none; }
+.sitemap-col a { color: var(--ink-70); font-size: 0.98rem; transition: color 0.3s var(--ease); }
+.sitemap-col a:hover { color: var(--forest-700); }
+@media (max-width: 900px) { .sitemap-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .sitemap-grid { grid-template-columns: 1fr; } }
